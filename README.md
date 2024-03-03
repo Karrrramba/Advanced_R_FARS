@@ -1,1 +1,1 @@
-# Advanced_R_FARS
+# FARSanalyzR
