@@ -1,0 +1,20 @@
+---
+title: "fars_package_vignette"
+author: "Michal Rackiewicz"
+date: "2024-03-03"
+output: rmarkdown::html_vignette:
+    toc: true
+    toc_depth: 2
+---
+
+# Introduction
+
+The `fars` package provides functions to read and analyze data from the Fatality Analysis Reporting System (FARS). This vignette provides an overview of the package and demonstrates how to use its main functions.
+
+# Installation
+
+You can install the `fars` package from GitHub using the `devtools` package:
+
+```r
+devtools::install_github("Karrrramba/Advanced_R_FARS")
+```
