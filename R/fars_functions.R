@@ -1,16 +1,17 @@
-#' Read csv file 
-#' 
+#' Read csv file
+#'
 #' @description
 #' This function reads csv-files converts it into a tibble.
 #'
 #' @param filename A character string with the name of the csv file to be read.
-#' 
-#' @returns Returns a tibble with the content of the specified file. 
-#'          It checks if the file specified exists and returns an error using the 'stop' function otherwise.
-#'          
+#'
+#' @returns Returns a tibble with the content of the specified file.
+#'          It checks if the file specified exists and returns an error using
+#'          the 'stop' function otherwise.
+#'
 #' @importFrom readr read_csv
-#' @importFrom dplyr tbl_df
-#' 
+#' @importFrom tibble as_tibble
+#'
 #' @examples
 #' \dontrun{
 #' fars_read("accidents_2013.csv")
@@ -23,14 +24,14 @@ fars_read <- function(filename) {
   data <- suppressMessages({
     readr::read_csv(filename, progress = FALSE)
   })
-  dplyr::tbl_df(data)
+  tibble::as_tibble(data)
 }
-  
+
 #' Create file name for a given year
 #'
 #' @description
 #' This function generates a filename for FARS data for the specified year.
-#' 
+#'
 #' @param year A numeric or character vector specifying the year(s) of interest.
 #'
 #' @returns Returns a character string representing the generated filename.
@@ -41,7 +42,7 @@ fars_read <- function(filename) {
 #'   make_filename(2013)
 #'   make_filename(c(2013, 2014))
 #' }
-#' 
+#'
 #' @export
 make_filename <- function(year) {
   year <- as.integer(year)
@@ -52,17 +53,20 @@ make_filename <- function(year) {
 #'
 #' @description
 #' This function reads data from the Fatality Analysis Reporting System (FARS) for
-#' multiple years and returns a list of data frames, each containing a 'MONTH' and a 'year' column.
+#' multiple years and returns a list of tibbles, each containing a 'MONTH' and
+#' a 'year' column.
 #'
 #' @param years A vector of numeric values representing the years for which FARS
 #'              data should be read.
 #'
 #' @returns A list of tibbles, each containing FARS data for a specific year
 #'          with a 'MONTH' and a 'year' column.
-#'          The function returns a warning if no FARS data set is available for the specified year.
-#'          
+#'          The function returns a warning if no FARS data set is available for
+#'          the specified year.
+#'
 #' @details
-#' This function takes the user input uses the 'make_filename' function to create the filenames to search for.
+#' This function takes the user input uses the 'make_filename' function to
+#' create the filenames to search for.
 #'
 #' @importFrom dplyr mutate select
 #' @importFrom utils warning
@@ -80,7 +84,7 @@ fars_read_years <- function(years) {
     file <- make_filename(year)
     tryCatch({
       dat <- fars_read(file)
-      dplyr::mutate(dat, year = year) %>% 
+      dplyr::mutate(dat, year = year) %>%
         dplyr::select(MONTH, year)
     }, error = function(e) {
       warning("invalid year: ", year)
@@ -93,17 +97,20 @@ fars_read_years <- function(years) {
 #' Sumamrize FARS data for multiple years
 #'
 #' @description
-#' This functions reads data for the specified years then combines it into 
-#' a single data frame and summarizes the number of accidents for each month and year.
+#' This functions reads data for the specified years then combines it into
+#' a single data frame and summarizes the number of accidents for each month and
+#' year.
 #'
 #' @param years A vector of numeric values representing the years for which FARS
 #'              data should be summarized.
 #'
-#' @returns A single tibble containing the number of accidents for each month and year.
+#' @returns A single tibble containing the number of accidents for each month and
+#'          year.
 #'
-#' @details This function utilizes the 'fars_read_years' function to obtain the data for 
+#' @details This function utilizes the 'fars_read_years' function to obtain
+#'          the data for
 #'          the specified years.
-#' 
+#'
 #' @importFrom dplyr bind_rows group_by summarize
 #' @importFrom tidyr spread
 #'
@@ -116,24 +123,28 @@ fars_read_years <- function(years) {
 #' @export
 fars_summarize_years <- function(years) {
   dat_list <- fars_read_years(years)
-  dplyr::bind_rows(dat_list) %>% 
-    dplyr::group_by(year, MONTH) %>% 
+  dplyr::bind_rows(dat_list) %>%
+    dplyr::group_by(year, MONTH) %>%
     dplyr::summarize(n = n()) %>%
     tidyr::spread(year, n)
 }
 
-  
+
 #' Plot FARS data
 #'
 #' @description
-#' This functions plots the locations of incidents recorded on a map of the specified state for the specified year.
+#' This functions plots the locations of incidents recorded on a map of
+#' the specified state for the specified year.
 #'
 #' @param state.num A numeric code representing the state.
-#' @param year A numeric value specifying the year for which the data should be plotted.
+#' @param year A numeric value specifying the year for which the data should
+#' be plotted.
 #'
-#' @returns A plot of the places of accidents (as points) based on latitude and longitude on the map of the specified state.
-#'          Returns a warning if invalid state code and/or an error in case an invalid year are specified.
-#' 
+#' @returns A plot of the places of accidents (as points) based on latitude and
+#'          longitude on the map of the specified state.
+#'          Returns a warning if invalid state code and/or an error in case an
+#'          invalid year is specified.
+#'
 #' @importFrom dplyr filter
 #' @importFrom graphics points
 #' @importFrom maps map
@@ -143,14 +154,14 @@ fars_summarize_years <- function(years) {
 #'   # Map the accidents in the state of California in the year 2014.
 #'   fars_map_state(6, 2014)
 #' }
-#' 
+#'
 #' @export
 
 fars_map_state <- function(state.num, year) {
   filename <- make_filename(year)
   data <- fars_read(filename)
   state.num <- as.integer(state.num)
-  
+
   if(!(state.num %in% unique(data$STATE)))
     stop("invalid STATE number: ", state.num)
   data.sub <- dplyr::filter(data, STATE == state.num)
