@@ -23,7 +23,7 @@ devtools::install_github("Karrrramba/Advanced_R_FARS")
 # Reading FARS data
 To read FARS data for a specific year, you can use the fars_read_years function:
 ```{r}
-library(fars)
+library(FARSanalyzr)
 
 # Read FARS data for years 2018 and 2019
 fars_data <- fars_read_years(c(2018, 2019))

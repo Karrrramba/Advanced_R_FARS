@@ -6,8 +6,8 @@
 #' @param filename A character string with the name of the csv file to be read.
 #'
 #' @returns Returns a tibble with the content of the specified file.
-#'          It checks if the file specified exists and returns an error using
-#'          the 'stop' function otherwise.
+#'  It checks if the file specified exists and returns an error using
+#'  the 'stop' function otherwise.
 #'
 #' @importFrom readr read_csv
 #' @importFrom tibble as_tibble
@@ -35,7 +35,7 @@ fars_read <- function(filename) {
 #' @param year A numeric or character vector specifying the year(s) of interest.
 #'
 #' @returns Returns a character string representing the generated filename.
-#'          The character string is formatted as: "accident_YEAR.csv.bz2".
+#'  The character string is formatted as: "accident_YEAR.csv.bz2".
 #'
 #' @examples
 #' \dontrun{
@@ -57,12 +57,12 @@ make_filename <- function(year) {
 #' a 'year' column.
 #'
 #' @param years A vector of numeric values representing the years for which FARS
-#'              data should be read.
+#'  data should be read.
 #'
 #' @returns A list of tibbles, each containing FARS data for a specific year
-#'          with a 'MONTH' and a 'year' column.
-#'          The function returns a warning if no FARS data set is available for
-#'          the specified year.
+#'  with a 'MONTH' and a 'year' column.
+#'  The function returns a warning if no FARS data set is available for
+#'  the specified year.
 #'
 #' @details
 #' This function takes the user input uses the 'make_filename' function to
@@ -102,14 +102,13 @@ fars_read_years <- function(years) {
 #' year.
 #'
 #' @param years A vector of numeric values representing the years for which FARS
-#'              data should be summarized.
+#'  data should be summarized.
 #'
 #' @returns A single tibble containing the number of accidents for each month and
-#'          year.
+#'  year.
 #'
 #' @details This function utilizes the 'fars_read_years' function to obtain
-#'          the data for
-#'          the specified years.
+#'  the data for the specified years.
 #'
 #' @importFrom dplyr bind_rows group_by summarize
 #' @importFrom tidyr spread
@@ -138,12 +137,12 @@ fars_summarize_years <- function(years) {
 #'
 #' @param state.num A numeric code representing the state.
 #' @param year A numeric value specifying the year for which the data should
-#' be plotted.
+#'  be plotted.
 #'
 #' @returns A plot of the places of accidents (as points) based on latitude and
-#'          longitude on the map of the specified state.
-#'          Returns a warning if invalid state code and/or an error in case an
-#'          invalid year is specified.
+#'  longitude on the map of the specified state.
+#'  Returns a warning if invalid state code and/or an error in case an
+#'  invalid year is specified.
 #'
 #' @importFrom dplyr filter
 #' @importFrom graphics points
