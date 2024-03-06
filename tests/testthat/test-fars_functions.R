@@ -43,8 +43,29 @@ test_that("fars_read_years works with multiple years", {
 
 test_that("fars_summarise_years returns a tibble", {
   setwd(system.file("extdata", package = "FARSanalyzr"))
-  data <- fars_summarize_years(c(2013, 2014))
-  print(data)
+  years <- c(2013, 2014)
+  data <- fars_summarize_years(years)
   expect_s3_class(data, "tbl_df")
 })
 
+test_that("fars_summarise_years returns the correct columns", {
+  setwd(system.file("extdata", package = "FARSanalyzr"))
+  years <- c(2013, 2014)
+  data <- fars_summarize_years(years)
+  expect_identical(colnames(data), c("MONTH", "2013", "2014"))
+})
+
+test_that("fars_map_state returns the correct error", {
+  setwd(system.file("extdata", package = "FARSanalyzr"))
+  years <- 2013
+  state <- 60
+  expect_error(fars_map_state(state, years), "invalid STATE number: 60")
+})
+
+test_that("fars_map_state returns a plot", {
+  setwd(system.file("extdata", package = "FARSanalyzr"))
+  years <- 2013
+  state <- 6
+  plot <- fars_map_state(state, years)
+  expect_true(is.null(plot))
+})
