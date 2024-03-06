@@ -1,11 +1,14 @@
 Package: FARSanalyzr
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Analyze and Visualize Fatality Analysis Reporting System Data
 Version: 0.1.0
-Author: Michal Rackiewicz
-Maintainer: The package maintainer <michal.rackiewicz@gmail.com>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Authors@R: person("Rackiewicz", "Michal", email = "michal.rackiewicz@gmail.com",
+    role = c("aut", "cre"))
+Description: Provides a framework to read, summarize and visualize data from
+    the Fatality Analysis Reporting System (FARS). Includes functions to read 
+    FARS data for multiple years, summarize accident data by month and year, 
+    and plot accident locations on a map.
+URL: https://github.com/Karrrramba/FARSanalyzr
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
