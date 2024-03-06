@@ -27,7 +27,7 @@ test_that("fars_read_years returns a list of tibbles", {
   # print(list.files())
 
   # cat(list.files())
-  years <- c(2013)
+  years <- 2013
 
   data <- fars_read_years(years)
   # Test whether returned object is a list
@@ -49,8 +49,6 @@ test_that("fars_read_years the objects in the list are tibbles", {
 
   data <- fars_read_years(years)
 
-  print(data[1])
-
   expect_true(all(sapply(data, inherits, "tbl_df")))
 })
 
@@ -58,8 +56,15 @@ test_that("fars_read_years works with multiple years", {
   setwd(system.file("extdata", package = "FARSanalyzr"))
   years <- c(2013, 2014)
   data <- fars_read_years(years)
+
   # Test whether returned object is a list
   expect_type(data, "list")
-  # Test whether objects within the list are tibbles
+})
+
+test_that("fars_read_years works with multiple years", {
+  setwd(system.file("extdata", package = "FARSanalyzr"))
+  years <- c(2013, 2014)
+  data <- fars_read_years(years)
+
   expect_true(all(sapply(data, inherits, "tbl_df")))
 })

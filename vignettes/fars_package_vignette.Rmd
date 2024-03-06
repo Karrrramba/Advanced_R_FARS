@@ -1,5 +1,5 @@
 ---
-title: "fars_package_vignette"
+title: "FARSanalyzr_vignette"
 author: "Michal Rackiewicz"
 date: "2024-03-03"
 output: rmarkdown::html_vignette:
