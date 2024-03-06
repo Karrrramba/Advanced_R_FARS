@@ -21,34 +21,16 @@ test_that("make_filename generates correct filename", {
 })
 
 test_that("fars_read_years returns a list of tibbles", {
-  # current_dir <- getwd()
   setwd(system.file("extdata", package = "FARSanalyzr"))
-  print(getwd())
-  # print(list.files())
-
-  # cat(list.files())
   years <- 2013
-
   data <- fars_read_years(years)
-  # Test whether returned object is a list
   expect_type(data, "list")
-
-  # setwd(current_dir)
 })
 
 test_that("fars_read_years the objects in the list are tibbles", {
-  # current_dir <- getwd()
   setwd(system.file("extdata", package = "FARSanalyzr"))
-
   years <- 2013
-  # file_name <- make_filename(years)
-  #file_path <- paste0("", make_filename(years))
-  # sample_data <- data.frame(MONTH = 1:3,
-  #                           year = 2013)
-  # write.csv(sample_data, file = file_name, row.names = FALSE)
-
   data <- fars_read_years(years)
-
   expect_true(all(sapply(data, inherits, "tbl_df")))
 })
 
@@ -56,15 +38,5 @@ test_that("fars_read_years works with multiple years", {
   setwd(system.file("extdata", package = "FARSanalyzr"))
   years <- c(2013, 2014)
   data <- fars_read_years(years)
-
-  # Test whether returned object is a list
   expect_type(data, "list")
-})
-
-test_that("fars_read_years works with multiple years", {
-  setwd(system.file("extdata", package = "FARSanalyzr"))
-  years <- c(2013, 2014)
-  data <- fars_read_years(years)
-
-  expect_true(all(sapply(data, inherits, "tbl_df")))
 })

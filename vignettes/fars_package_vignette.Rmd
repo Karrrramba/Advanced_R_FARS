@@ -9,11 +9,11 @@ output: rmarkdown::html_vignette:
 
 # Introduction
 
-The `fars` package provides functions to read and analyze data from the Fatality Analysis Reporting System (FARS). This vignette provides an overview of the package and demonstrates how to use its main functions.
+The `FARSanalyzr` package provides functions to read and analyze data from the Fatality Analysis Reporting System (FARS). This vignette provides an overview of the package and demonstrates how to use its main functions.
 
 # Installation
 
-You can install the `fars` package from GitHub using the `devtools` package:
+You can install the `FARSanalyzr` package from GitHub using the `devtools` package:
 
 ```{r}
 devtools::install_github("Karrrramba/Advanced_R_FARS")
@@ -25,15 +25,15 @@ To read FARS data for a specific year, you can use the fars_read_years function:
 ```{r}
 library(FARSanalyzr)
 
-# Read FARS data for years 2018 and 2019
-fars_data <- fars_read_years(c(2018, 2019))
+# Read FARS data for years 2013 and 2014
+fars_data <- fars_read_years(c(2013, 2014))
 ```
 
 # Summarizing FARS data
 Once you have read the FARS data, you can summarize it using the fars_summarize_years function:
 ```{r}
 # Summarize total accidents for each month for the years 2018 and 2019
-summary_data <- fars_summarize_years(c(2018, 2019))
+summary_data <- fars_summarize_years(c(2013, 2014))
 ```
 
 # Plotting 
@@ -41,6 +41,6 @@ You can also make a geospatial representation of the recorded events for a given
 state and year.
 ```{r}
 # Map the accidents in the state of California in the year 2019
-fars_map_state(6, 2019)
+fars_map_state(6, 2013)
 ```
 
