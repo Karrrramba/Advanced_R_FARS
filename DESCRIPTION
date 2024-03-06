@@ -9,17 +9,23 @@ Description: Provides a framework to read, summarize and visualize data from
     FARS data for multiple years, summarize accident data by month and year, 
     and plot accident locations on a map.
 URL: https://github.com/Karrrramba/FARSanalyzr
+Bugreports: https://github.com/Karrrramba/FARSanalyzr/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports:
-    dplyr
-    graphics
-    maps
-    readr
-    tibble
+    dplyr,
+    graphics,
+    maps,
+    readr,
+    tibble,
     tidyr
 Suggests: 
-    testthat (>= 3.0.0)
+    ggplot2,
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0),
+    vdiffr
 Config/testthat/edition: 3
 RoxygenNote: 7.3.1
+VignetteBuilder: knitr

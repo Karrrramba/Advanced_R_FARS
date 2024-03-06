@@ -69,8 +69,6 @@ make_filename <- function(year) {
 #' create the filenames to search for.
 #'
 #' @importFrom dplyr mutate select
-#' @importFrom utils warning
-#' @importFrom methods tryCatch
 #'
 #' @examples
 #' \dontrun{
