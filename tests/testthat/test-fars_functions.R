@@ -40,3 +40,11 @@ test_that("fars_read_years works with multiple years", {
   data <- fars_read_years(years)
   expect_type(data, "list")
 })
+
+test_that("fars_summarise_years returns a tibble", {
+  setwd(system.file("extdata", package = "FARSanalyzr"))
+  data <- fars_summarize_years(c(2013, 2014))
+  print(data)
+  expect_s3_class(data, "tbl_df")
+})
+
