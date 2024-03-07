@@ -1,0 +1,81 @@
+---
+title: "FARSanalyzr overview"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{FARSanalyzr-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  eval = FALSE
+)
+```
+
+```{r setup}
+library(FARSanalyzr)
+```
+
+## Introduction
+
+The `FARSanalyzr` package provides few and very basic functions to read and analyze data from the Fatality Analysis Reporting System (FARS). This vignette provides an overview of the package and demonstrates how to use its main functions.
+
+## Example Datasets
+
+The package includes two example datasets, which are located in the `inst/extdata` directory:
+
+1.  `accidents_2013.csv.bz2`: This dataset contains accident data from the year 2013.
+2.  `accidents_2014.csv.bz2`: This dataset contains accident data from the year 2014.
+
+These datasets are provided to demonstrate the capabilities of the package and allow users to practice analyzing FARS data without needing to download additional datasets.
+
+### Accessing Example Datasets
+
+Users can access the example datasets using the `system.file()` function, which retrieves the path to files within the package directory.
+
+``` r
+file_2013 <- system.file("extdata", "accidents_2013.csv.bz2", 
+  package = "FARSanalyzr")
+```
+
+### Exploring (example) datasets
+
+You can explore the example datasets by reading them into R using `fars_read()`, which returns a tibble.
+
+``` r
+data_2013 <- fars_read(file_2013)
+```
+
+## Summarizing data
+
+`fars_summarize_years(years)` summarizes FARS data for multiple years by counting the number of accidents for each month and year.
+
+``` r
+fars_summarize_years(c(2013, 2014))
+```
+
+## Plotting data
+
+You can make geospatial visualizations of the state-specific accident locations with `fars_map_state()`. Returns a plygon plot of the state with overlaid points marking the accidents based on longitude and latitude.
+
+``` r
+fars_map_year(6, 2013)
+```
+
+## Helper functions
+
+`make_filename(year)` generates filenames for compressed .bz2 files for the given year.
+
+``` r
+make_filename(2013)
+make_filename(2013:2019)
+```
+
+`fars_read_years(years)` Reads FARS data for multiple years and returns a list of tibbles, each containing a `'MONTH'` and a `'YEAR'` column for a specific year.
+
+``` r
+fars_read_years(c(2013, 2014))
+```
