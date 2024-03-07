@@ -6,6 +6,14 @@ test_that("fars_read returns a tibble", {
   expect_s3_class(data, "tbl_df")
 })
 
+test_that("fars_read returns an error message", {
+  setwd(system.file("extdata", package = "FARSanalyzr"))
+  file_name <- "accident_2019.csv.bz2"
+
+  # data <- fars_read(file_name)
+  expect_error(fars_read(file_name), "file 'accident_2019.csv.bz2' does not exist")
+})
+
 test_that("make_filename generates correct filename", {
   # Test make_filename function with a single year
   years <- 2013

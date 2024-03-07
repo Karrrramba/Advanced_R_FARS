@@ -14,7 +14,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' fars_read("accidents_2013.csv")
+#' fars_read("accidents_2013.csv.bz2")
 #' }
 #'
 #' @export
