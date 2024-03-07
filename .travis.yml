@@ -14,9 +14,9 @@ r:
   - devel
 
 r_packages:
-  - devtools
-  - testthat
-  - covr
+   - devtools@2.4.2
+  - testthat@3.1.0
+  - covr@3.5.1
 
 after_success:
   - Rscript -e 'covr::codecov()'
