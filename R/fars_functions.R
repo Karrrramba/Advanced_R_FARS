@@ -69,6 +69,7 @@ make_filename <- function(year) {
 #' create the filenames to search for.
 #'
 #' @importFrom dplyr mutate select
+#' @importFrom magrittr %>%
 #'
 #' @examples
 #' \dontrun{
@@ -109,6 +110,7 @@ fars_read_years <- function(years) {
 #'  the data for the specified years.
 #'
 #' @importFrom dplyr bind_rows group_by summarize n
+#' @importFrom magrittr %>%
 #' @importFrom tidyr spread
 #'
 #' @examples
