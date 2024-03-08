@@ -108,7 +108,7 @@ fars_read_years <- function(years) {
 #' @details This function utilizes the 'fars_read_years' function to obtain
 #'  the data for the specified years.
 #'
-#' @importFrom dplyr bind_rows group_by summarize
+#' @importFrom dplyr bind_rows group_by summarize n
 #' @importFrom tidyr spread
 #'
 #' @examples
