@@ -8,6 +8,14 @@ Build Status
 
 </div>
 
+This is an assignment for the Course 3 : Building R Packages. Kindly
+refer to my GitHub repo for the courses [Coursera Mastering Software
+Development in
+R](https://github.com/englianhu/Coursera-Mastering-Software-Development-in-R) to
+know the course detail or [Building R
+Packages](https://www.coursera.org/learn/r-packages) to register for
+study.
+
 # FARSanalyzr
 
 FARSanalyzr is an R package for analyzing data from the Fatality
